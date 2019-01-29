@@ -14,31 +14,32 @@ import org.unreal.dagger.function.main.presenter.MainPresenter;
 
 import javax.inject.Inject;
 
-public class MainActivity extends AppCompatActivity implements MainContract.View{
+import butterknife.BindView;
+
+public class MainActivity extends AppCompatActivity implements MainContract.View {
 
     //注入presenter 对象
     @Inject
     MainPresenter mainPresenter;
 
-    private TextView city;
-    private TextView cityCode;
-    private TextView ip;
-    private TextView isp;
+    @BindView(R.id.city)
+    TextView city;
+
+    @BindView(R.id.cityCode)
+    TextView cityCode;
+
+    @BindView(R.id.ip)
+    TextView ip;
+
+    @BindView(R.id.isp)
+    TextView isp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setupActivityComponent();
-        bindView();
         mainPresenter.main();
-    }
-
-    private void bindView() {
-        city = (TextView) findViewById(R.id.city);
-        cityCode = (TextView) findViewById(R.id.cityCode);
-        ip = (TextView) findViewById(R.id.ip);
-        isp = (TextView) findViewById(R.id.isp);
     }
 
     /**

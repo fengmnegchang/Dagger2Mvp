@@ -55,7 +55,7 @@ public class OkhttpModule {
                 .addNetworkInterceptor(interceptor)
                 .addNetworkInterceptor(cacheInterceptor)
                 .retryOnConnectionFailure(true)
-                .connectTimeout(10, TimeUnit.SECONDS)
+                .connectTimeout(30, TimeUnit.SECONDS)
                 .build();
     }
 
@@ -68,7 +68,7 @@ public class OkhttpModule {
         return new OkHttpClient.Builder()
                 .addNetworkInterceptor(interceptor)
                 .retryOnConnectionFailure(true)
-                .connectTimeout(10, TimeUnit.SECONDS)
+                .connectTimeout(30, TimeUnit.SECONDS)
                 .build();
     }
 }

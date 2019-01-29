@@ -2,7 +2,6 @@ package org.unreal.dagger.function.main.presenter;
 
 import android.content.SharedPreferences;
 
-import org.unreal.dagger.data.http.local.service.UserService;
 import org.unreal.dagger.data.http.taobao.service.TaobaoIPLocationService;
 import org.unreal.dagger.data.http.taobao.vo.TaobaoIPLocationInfo;
 import org.unreal.dagger.function.main.contract.MainContract;
@@ -29,21 +28,19 @@ public class MainPresenter implements MainContract.presenter {
     private final MainContract.View view;
     private final SharedPreferences sharedPreferences;
     private final TaobaoIPLocationService locationService;
-    private final UserService userService;
 
     @Inject
     public MainPresenter(MainContract.View view,
                          @Named("default") SharedPreferences sharedPreferences,
-                         TaobaoIPLocationService locationService,
-                         UserService userService) {
+                         TaobaoIPLocationService locationService
+                          ) {
         this.view = view;
         this.sharedPreferences = sharedPreferences;
         this.locationService = locationService;
-        this.userService = userService;
     }
 
     public void main(){
-        locationService.getIPInfo("myip")
+        locationService.getIPInfo("192.168.13.83")
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Subscriber<TaobaoIPLocationInfo>() {
